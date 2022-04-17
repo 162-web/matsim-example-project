@@ -135,6 +135,11 @@
 			<version>${matsim.version}</version>
 		</dependency>
 		<!--Dependencies from where stated above to here are added as a service; they can be removed if you don't need them-->
+		<dependency>
+			<groupId>org.matsim.contrib</groupId>
+			<artifactId>accessibility</artifactId>
+			<version>${matsim.version}</version>
+		</dependency>
 
 	</dependencies>
 
