@@ -58,11 +58,19 @@ public class RunMatsim{
 		Config config;
 		if ( args==null || args.length==0 || args[0]==null ){
 			config = ConfigUtils.loadConfig( "scenarios/equil/config.xml" );
+//			config = ConfigUtils.loadConfig( "https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/hamburg/hamburg-v3/v3.0/input/baseCase/hamburg-v3.0-1pct.config.baseCase.xml" );
 		} else {
 			config = ConfigUtils.loadConfig( args );
 		}
 
 		config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );
+		config.controler().setLastIteration(0);
+
+		config.plansCalcRoute().setAccessEgressType(PlansCalcRouteConfigGroup.AccessEgressType.accessEgressModeToLink);
+
+		PlansCalcRouteConfigGroup.TeleportedModeParams pars = new PlansCalcRouteConfigGroup.TeleportedModeParams("pedelec");
+		pars.setTeleportedModeSpeed(25. / 3.6);
+		config.plansCalcRoute().addTeleportedModeParams(pars);
 
 		// possibly modify config here
 
@@ -78,7 +86,7 @@ public class RunMatsim{
 		
 		// possibly modify controler here
 
-//		controler.addOverridingModule( new OTFVisLiveModule() ) ;
+		controler.addOverridingModule( new OTFVisLiveModule() ) ;
 
 		
 		// ---

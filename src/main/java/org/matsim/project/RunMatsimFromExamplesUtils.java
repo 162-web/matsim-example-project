@@ -14,11 +14,13 @@ class RunMatsimFromExamplesUtils{
 
 	public static void main( String[] args ){
 
-		URL context = org.matsim.examples.ExamplesUtils.getTestScenarioURL( "equil" );
-		URL url = IOUtils.extendUrl( context, "config.xml" );
+		URL context = org.matsim.examples.ExamplesUtils.getTestScenarioURL( "equil-mixedTraffic" );
+		URL url = IOUtils.extendUrl( context, "config-with-mode-vehicles.xml" );
 
 		Config config = ConfigUtils.loadConfig( url );
 		config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );
+		config.controler().setLastIteration(0);
+		config.controler().setOutputDirectory("equil-mixedTraffic");
 
 		// ---
 
